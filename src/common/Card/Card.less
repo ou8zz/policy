@@ -1,0 +1,73 @@
+:global .card {
+	margin: 1em 0;
+	background: #fff;
+	box-shadow: 0 0 2px #ddd;
+	border-radius: 5px;
+	overflow: hidden;
+	padding: 1em 2em 2em;
+	color: #666;
+	h4 {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		height: 3em;
+		& > p {
+			padding-bottom: 0;
+			color: #333;
+		}
+		& > span {
+			color: blue;
+		}
+	}
+	.tips {
+		color: #999;
+		& > p {
+			display: inline-block;
+			margin-right: 2em;
+			& > i {
+				margin-right: 3px;
+			}
+		}
+
+		& > span {
+
+		}
+	}
+	.content {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
+		line-height: 2em;
+	}
+	.option-btns {
+		margin-top: 1em;
+		& > p {
+			display: inline-block;
+			padding: 0 2em;
+			margin-bottom: 0;
+			position: relative;
+			cursor: pointer;
+			&:hover {
+				color: #3399ff;
+			}
+			&:after {
+				position: absolute;
+				right: 0;
+				top: 0;
+				content: '';
+				display: block;
+				width: 0;
+				height: 100%;
+				border-right: 1px solid #ccc;
+			}
+			&:last-child:after {
+				display: none;
+			}
+			& > i {
+				margin-right: 3px;
+			}
+		}
+	}
+}
