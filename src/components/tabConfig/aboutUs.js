@@ -4,7 +4,6 @@
 import React from 'react'
 import { Form, Button, Input, Icon, Spin, Popconfirm } from 'antd'
 import style from './index.less'
-import moment from 'moment'
 
 const FormItem = Form.Item;
 const formItemLayout = { labelCol: { span: 4 }, wrapperCol: { span: 18 }, };
@@ -13,12 +12,6 @@ let uuid = 0;
 @Form.create()
 export default class AboutUsFrom extends React.Component {
   state = { fields: [] }
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-  }
 
   onRefresh = () => {
     this.props.onRefresh("fetch3");

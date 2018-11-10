@@ -1,0 +1,6 @@
+.idea
+.git
+mock
+node_modules
+src
+dist

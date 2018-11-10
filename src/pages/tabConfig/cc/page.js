@@ -5,14 +5,6 @@ import getStateProperties from 'utils/getStateProperties'
 
 function configPage({ dispatch, ...commentState }) {
 
-  function setTips(params) {
-    dispatch({ type: 'common/setTips', params })
-  }
-
-  function getTips(params) {
-    dispatch({ type: 'common/getTips', params })
-  }
-
   function setCheckVersion(params) {
     dispatch({ type: 'common/setCheckVersion', params })
   }
@@ -105,8 +97,6 @@ function configPage({ dispatch, ...commentState }) {
     <TabFrom
       {...commentState}
       onRefresh={onRefresh}
-      setTips={setTips}
-      getTips={getTips}
       setCheckVersion={setCheckVersion}
       getCheckVersion={getCheckVersion}
       setAboutUs={setAboutUs}

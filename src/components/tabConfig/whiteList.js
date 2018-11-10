@@ -136,7 +136,7 @@ export default Form.create()(class WhiteList extends React.Component {
         <span>
           <Popover
             trigger="click"
-            visible={this.state.visiblePopoverNo == record.id}
+            visible={this.state.visiblePopoverNo === record.id}
             onVisibleChange={(visible) => {
               setTimeout(() => {
                 this.setState({ visiblePopoverNo: visible ? record.id : 0, visibleValidExpireDate: false });
@@ -190,13 +190,14 @@ export default Form.create()(class WhiteList extends React.Component {
 
     let go1 = [], go2 = [], go3 = [];
     productList && productList.map((item, k) => {
-      if (item.type_name == '专栏') {
+      if (item.type_name === '专栏') {
         go1.push(<Option key={item.product_id} value={item.product_id} > {item.title} </Option>)
-      } else if (item.type_name == '专辑') {
+      } else if (item.type_name === '专辑') {
         go2.push(<Option key={item.product_id} value={item.product_id} > {item.title} </Option>)
-      } else if (item.type_name == '电报解读') {
+      } else if (item.type_name === '电报解读') {
         go3.push(<Option key={item.product_id} value={item.product_id} > {item.title} </Option>)
       }
+      return 
     })
 
     return (

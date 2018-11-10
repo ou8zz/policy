@@ -3,7 +3,6 @@
  */
 import React from 'react'
 import { Tabs } from 'antd'
-import TipsFrom from '../Comment/Tips'
 import CheckVersionFrom from './checkVersion'
 import AboutUsFrom from './aboutUs'
 import WhiteList from './whiteList'
@@ -13,14 +12,11 @@ import BrokerSwitch from './brokerSwitch'
 const TabPane = Tabs.TabPane;
 
 export default class TabFrom extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { onRefresh, handleSearch } = this.props;
     function callback(key) {
-      if (key == 'fetch4') {
+      if (key === 'fetch4') {
         handleSearch({ isWhitelist: true });
       } else {
         onRefresh(key)
@@ -29,14 +25,6 @@ export default class TabFrom extends React.Component {
 
     return (
       <Tabs defaultActiveKey="1" onChange={callback}>
-        <TabPane tab="评论控制" key="fetch1">
-          <TipsFrom
-            {...this.props}
-            loading={this.props.loading}
-            setTips={this.props.setTips}
-            getTips={this.props.getTips}
-          />
-        </TabPane>
         <TabPane tab="版本更新设置" key="fetch2">
           <CheckVersionFrom
             {...this.props}

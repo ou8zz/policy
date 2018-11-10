@@ -1,5 +1,4 @@
 import { fromJS } from 'immutable'
-import { getTips, setTips } from 'services/comment'
 import {
   getCheckVersion,
   setCheckVersion,
@@ -45,7 +44,7 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname }) => { // query = {}
         if (pathname === '/tabConfig/cc') {
-          dispatch({ type: 'fetch1' })
+          dispatch({ type: 'fetch2' })
         }
         if (pathname === '/tabConfig/whiteList') {
           dispatch({ type: 'resetQuery', params: { isWhitelist: true } })
@@ -56,12 +55,6 @@ export default {
   },
 
   effects: {
-    *fetch1(_, { call, put, select }) {
-      yield put({ type: 'setLoading', loading: true });
-      const res = yield call(getTips, {});
-      yield put({ type: 'setDataSource', dataSource: res });
-      yield put({ type: 'setLoading', loading: false });
-    },
     *fetch2(_, { call, put, select }) {
       yield put({ type: 'setLoading', loading: true });
       const res = yield call(getCheckVersion, {});
@@ -135,12 +128,6 @@ export default {
       yield put({ type: 'setLoading', loading: true });
       const res = yield call(setBrokerSwitch, params);
       yield put({ type: 'setBrokerSwitch', brokerSwitch: res });
-      yield put({ type: 'setLoading', loading: false });
-    },
-    *setTips({ params }, { call, put, select }) {
-      yield put({ type: 'setLoading', loading: true });
-      const res = yield call(setTips, params);
-      yield put({ type: 'setDataSource', dataSource: res });
       yield put({ type: 'setLoading', loading: false });
     },
     *getCheckVersion({ params }, { call, put }) {
