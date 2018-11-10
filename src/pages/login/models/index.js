@@ -28,7 +28,13 @@ export default {
             cookies.set('access_token', loginTmpCode, { path: '/' })
             yield put(routerRedux.push('/'));
         },
-
+        *doLogout(_, { call, put }) {
+            cookies.remove('access_token', { domain: 'cailianpress.com' })
+            cookies.remove('access_token', { domain: 't-editor.cailianpress.com' })
+            cookies.remove('access_token', { domain: 'editor.cailianpress.com' })
+            cookies.remove('access_token')
+            yield put(routerRedux.push('/login'));
+        },
     },
     reducers: {
       setUser(state, { user }) {

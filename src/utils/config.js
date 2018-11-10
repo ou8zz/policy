@@ -1,10 +1,10 @@
 // const url = window.location
 
 export default {
-  name: '财联社',
-  prefix: '财联社Admin',
-  footerText: '财联社Admin 版权所有',
+  name: '六 點 六',
+  prefix: '六 點 六',
+  footerText: '©2018 Powered by 六 點 六',
   logoSrc: 'https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg',
-  logoText: '财联社',
+  logoText: '六 點 六',
   needLogin: true,
 }
