@@ -18,7 +18,7 @@ export default {
 
     "proxy": {
         "/api": {
-            "target": "https://t-editor-api.cailianpress.com/",
+            "target": "http://39.108.74.193:8700/",
             "changeOrigin": true
         }
     }

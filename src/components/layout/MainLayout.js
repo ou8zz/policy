@@ -4,6 +4,7 @@ import { connect } from 'dva'
 import classnames from 'classnames'
 import withRouter from 'umi/withRouter';
 import Header from 'components/layout/header'
+import Navigation from 'components/layout/navigation'
 import Footer from 'components/layout/footer'
 import Sider from 'components/layout/sider'
 import styles from 'components/layout/main.less'
@@ -49,7 +50,7 @@ class App extends React.Component {
             },
 
             logout() {
-                dispatch({ type: 'app/logout' })
+                dispatch({ type: 'login/doLogout' })
             },
 
             switchSider() {
