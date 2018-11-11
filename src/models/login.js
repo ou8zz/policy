@@ -16,7 +16,7 @@ export default {
     state: initState,
     subscriptions: {
         setup({ dispatch }) {
-       
+
         },
     },
 
@@ -24,7 +24,7 @@ export default {
         *doLogin({ params }, { call, put }) {
             yield put({ type: 'setLoading', loading: true });
             const user = yield call(login, params)
-            yield put({ type: 'setUser', user:user.Data })
+            yield put({ type: 'setUser', user: user.Data })
             yield put({ type: 'setLoading', loading: false });
             if (user.Data && user.Data.id > 0) {
                 message.success('登录成功');
@@ -39,12 +39,12 @@ export default {
             yield call(logout, params)
             yield put({ type: 'setLoading', loading: false });
             yield put(routerRedux.push('/login'));
-            yield put({ type: 'logout'})
+            yield put({ type: 'logout' })
         },
         *doRegister({ params }, { call, put }) {
             yield put({ type: 'setLoading', loading: true });
             const user = yield call(register, params)
-            yield put({ type: 'setUser', user:user.Data })
+            yield put({ type: 'setUser', user: user.Data })
             yield put({ type: 'setLoading', loading: false });
             if (user.Data && user.Data.id > 0) {
                 message.success('登录成功');
@@ -58,18 +58,18 @@ export default {
     },
 
     reducers: {
-      setUser(state, { user }) {
-        return produce(state, draft => {draft.user = user})
-      },
+        setUser(state, { user }) {
+            return produce(state, draft => { draft.user = user })
+        },
 
-      logout() {
-          cookies.remove('access_token')
-          return initState
-      },
+        logout() {
+            cookies.remove('access_token')
+            return initState
+        },
 
-      setLoading(state, { loading }) {
-        return produce(state, draft => {draft.loading = loading})
-      },
+        setLoading(state, { loading }) {
+            return produce(state, draft => { draft.loading = loading })
+        },
     },
 }
 

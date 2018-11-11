@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'dva';
 import Login from '../../components/user/login';
 
-class LoginPage extends React.Component {
+class UserPage extends React.Component {
   render() {
     const { dispatch } = this.props;
     const headerProps = {
@@ -18,4 +18,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default connect(state => (state.login))(LoginPage);
+export default connect(state => (state.login))(UserPage);

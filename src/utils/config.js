@@ -1,5 +1,3 @@
-// const url = window.location
-
 export default {
   name: '六 點 六',
   prefix: '六 點 六',

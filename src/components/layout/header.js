@@ -1,11 +1,9 @@
 import React from 'react'
 import { Avatar, Button, Input, Menu, Row, Col, Icon, Popover, Dropdown } from 'antd'
 import styles from './main.less'
-import Menus from './menu'
 
 const Search = Input.Search;
-const SubMenu = Menu.SubMenu
-function Header({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVisible, location, switchMenuPopover }) {
+function Header({ user, logout, }) {
   const menu = (
     <Menu>
       <Menu.Item>
@@ -44,16 +42,6 @@ function Header({ user, logout, switchSider, siderFold, isNavbar, menuPopoverVis
           </Dropdown>
         </Col>
       </Row>
-      {/* {isNavbar
-        ? <Popover placement="bottomLeft" onVisibleChange={switchMenuPopover} visible={menuPopoverVisible} overlayClassName={styles.popovermenu} trigger="click" content={<Menus {...menusProps} />}>
-          <div className={styles.siderbutton}>
-            <Icon type="bars" />
-          </div>
-        </Popover>
-        : <div className={styles.siderbutton} onClick={switchSider}>
-          <Icon type={siderFold ? 'menu-unfold' : 'menu-fold'} />
-        </div>} */}
-
     </div>
   )
 }
