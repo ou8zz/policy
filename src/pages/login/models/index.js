@@ -1,13 +1,14 @@
 import Cookies from 'universal-cookie'
 import { routerRedux } from 'dva/router';
 import produce from "immer"
-import { login } from 'services/user'
+import { login, logout, register } from 'services/user'
+import { message } from 'antd'
 
 const cookies = new Cookies()
-
 const initState = {
     login: false,
     user: {},
+    loading: false
 }
 
 export default {
@@ -15,67 +16,60 @@ export default {
     state: initState,
     subscriptions: {
         setup({ dispatch }) {
-        //   window.onresize = function names() {
-        //       dispatch({ type: 'changeNavbar' })
-        //   }
+       
         },
     },
 
     effects: {
-        *doLogin({loginTmpCode}, { call, put }) {
-            const user = yield call(login, loginTmpCode)
-            yield put({ type: 'setUser', user })
-            cookies.set('access_token', loginTmpCode, { path: '/' })
-            yield put(routerRedux.push('/'));
+        *doLogin({ params }, { call, put }) {
+            yield put({ type: 'setLoading', loading: true });
+            const user = yield call(login, params)
+            yield put({ type: 'setUser', user:user.Data })
+            yield put({ type: 'setLoading', loading: false });
+            if (user.Data && user.Data.id > 0) {
+                message.success('登录成功');
+                cookies.set('access_token', user.Data.token, { path: '/' })
+                yield put(routerRedux.push('/'));
+            } else {
+                message.error(user.Data || user.Msg);
+            }
         },
-        *doLogout(_, { call, put }) {
-            cookies.remove('access_token', { domain: 'cailianpress.com' })
-            cookies.remove('access_token', { domain: 't-editor.cailianpress.com' })
-            cookies.remove('access_token', { domain: 'editor.cailianpress.com' })
-            cookies.remove('access_token')
+        *doLogout({ params }, { call, put }) {
+            yield put({ type: 'setLoading', loading: true });
+            yield call(logout, params)
+            yield put({ type: 'setLoading', loading: false });
             yield put(routerRedux.push('/login'));
+            yield put({ type: 'logout'})
+        },
+        *doRegister({ params }, { call, put }) {
+            yield put({ type: 'setLoading', loading: true });
+            const user = yield call(register, params)
+            yield put({ type: 'setUser', user:user.Data })
+            yield put({ type: 'setLoading', loading: false });
+            if (user.Data && user.Data.id > 0) {
+                message.success('登录成功');
+                cookies.set('access_token', user.Data.token, { path: '/' })
+                yield put(routerRedux.push('/'));
+            } else {
+                message.error(user.Data || user.Msg);
+                yield put(routerRedux.push('/login'));
+            }
         },
     },
+
     reducers: {
       setUser(state, { user }) {
         return produce(state, draft => {draft.user = user})
       },
 
-      doLogout() {
-          cookies.remove('access_token', { domain: 'cailianpress.com' })
-          cookies.remove('access_token', { domain: 't-editor.cailianpress.com' })
-          cookies.remove('access_token', { domain: 'editor.cailianpress.com' })
+      logout() {
           cookies.remove('access_token')
-          // window.localStorage.removeItem('user')
           return initState
       },
 
-      loginFail(state) {
-          return {
-              ...state,
-              login: false,
-              loginButtonLoading: false,
-          }
+      setLoading(state, { loading }) {
+        return produce(state, draft => {draft.loading = loading})
       },
-      showLoginButtonLoading(state) {
-          return { 
-              ...state,
-              loginButtonLoading: true,
-          }
-      },
-      showLoading(state) {
-          return {
-              ...state,
-              loading: true,
-          }
-      },
-      hideLoading(state) {
-          return {
-              ...state,
-              loading: false,
-          }
-      }
-      
     },
 }
 

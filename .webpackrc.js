@@ -18,8 +18,10 @@ export default {
 
     "proxy": {
         "/api": {
-            "target": "http://39.108.74.193:8700/",
-            "changeOrigin": true
+            // "target": "http://39.108.74.193:8700/v1/",
+            "target": "http://localhost:8700/v1/",
+            "changeOrigin": true,
+            "pathRewrite": { "^/api": "" }
         }
     }
 };

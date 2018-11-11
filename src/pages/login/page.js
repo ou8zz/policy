@@ -6,12 +6,16 @@ class LoginPage extends React.Component {
   render() {
     const { dispatch } = this.props;
     const headerProps = {
-      doLogin(param) {
-        dispatch({ type: 'login/doLogin', param})
-      }
+      ...this.props,
+      doLogin(params) {
+        dispatch({ type: 'login/doLogin', params: params })
+      },
+      doRegister(params) {
+        dispatch({ type: 'login/doRegister', params: params })
+      },
     }
     return <Login {...headerProps} />
   }
 }
 
-export default connect()(LoginPage);
+export default connect(state => (state.login))(LoginPage);
