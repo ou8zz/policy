@@ -24,7 +24,7 @@ export default Form.create()(class UserInfo extends React.Component {
     const { form } = this.props;
     return (
       <Spin spinning={this.props.loading} >
-      <Card
+        <Card
           style={{ width: 300, marginTop: 16 }}
           actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
         >
@@ -57,27 +57,9 @@ export default Form.create()(class UserInfo extends React.Component {
               )
             }
           </FormItem>
-          {
-            this.state.changeModel == 'login' ?
-              <FormItem {...formItemLayout}>
-                {
-                  form.getFieldDecorator('remember', {
-                    valuePropName: 'checked',
-                    initialValue: true,
-                  })(
-                    <Checkbox>记住我</Checkbox>
-                  )
-                }
-                <a className="login-form-forgot" href="">忘记密码</a>
-                <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.loginPost}> 登录 </Button>
-                没有账号？<a href="javascript:void(0)" onClick={() => this.changeModel("register")}>注册</a>
-              </FormItem>
-              :
-              <div>
-                <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.registerPost}> 注册 </Button>
-                <a href="javascript:void(0)" onClick={() => this.changeModel("login")}>去登录</a>
-              </div>
-          }
+          <div>
+            <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.registerPost}> 保存 </Button>
+          </div>
         </Form>
       </Spin>
     )

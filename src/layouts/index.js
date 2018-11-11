@@ -14,15 +14,12 @@ class IndexLayout extends React.Component {
     const { user, children } = this.props;
     const token = cookies.get('access_token')
     const hasToken = token && token.length > 0;
-
+    console.log("1----------------------->>>", hasToken, token, user);
     if(_.startsWith(this.props.location.pathname, "/login")){
-      if (hasToken && user.id > 0) {
-        return (<MainLayout>{children}</MainLayout>)
-      }
       return (<div>{children}</div>)
     }
     
-    if (hasToken && user.id > 0) {
+    if (hasToken) {
       return (<MainLayout>{children}</MainLayout>)
     }
     return <Redirect to="/login" />;

@@ -7,7 +7,7 @@ function Header({ user, logout, }) {
   const menu = (
     <Menu>
       <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/"><Icon type="user"/> 我的主页</a>
+        <a target="_blank" rel="noopener noreferrer" href="/#/user"><Icon type="user"/> 我的主页</a>
       </Menu.Item>
       <Menu.Item>
         <a target="_blank" rel="noopener noreferrer" href="javascript:void(0)"><Icon type="setting"/> 设置</a>
