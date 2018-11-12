@@ -1,6 +1,7 @@
 import React from 'react'
 import withRouter from 'umi/withRouter';
 import { connect } from 'dva'
+import dynamic from 'umi/dynamic';
 import Cookies from 'universal-cookie'
 import Redirect from 'umi/redirect';
 import MainLayout from 'components/layout/MainLayout'
@@ -18,11 +19,13 @@ class IndexLayout extends React.Component {
     if(_.startsWith(this.props.location.pathname, "/login")){
       return (<div>{children}</div>)
     }
-    
-    if (hasToken) {
-      return (<MainLayout>{children}</MainLayout>)
-    }
-    return <Redirect to="/login" />;
+    const DynamicLayout = dynamic({ loader: async () => {
+      if (hasToken) {
+        return () => <MainLayout>{children}</MainLayout>
+      }
+      return () => <Redirect to="/login" />;
+    }})
+    return <DynamicLayout />
   }
 }
 export default withRouter(connect(state => (state.login))(IndexLayout));
