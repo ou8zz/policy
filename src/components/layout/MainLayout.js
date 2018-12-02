@@ -23,22 +23,15 @@ class MainLayout extends React.Component {
 
     return (
       <LocaleProvider locale={zhCN}>
-        <div className={classnames(styles.layout)}>
-          <Row type="flex" justify="center" align="middle">
-            <Col span={14}>
-              <Header {...headerProps} />
-            </Col>
-          </Row>
-          <Row type="flex" justify="center" align="middle">
-            <Col span={14}>
-              {children}
-            </Col>
-          </Row>
-          <Row type="flex" justify="center" align="middle">
-            <Col span={14}>
-              <Footer />
-            </Col>
-          </Row>
+        <div className={`${styles.contentWrap} ${styles.webWidth} ${styles.clearfix} `}>
+          <div className={`${styles.contentLeft} ${styles.pR} ${styles.vipBoxShadow} `}>
+            <Header {...headerProps} />
+            {children}
+            <Footer />
+          </div>
+          {/* <div className={styles.contentRight}>
+            
+            </div> */}
         </div>
       </LocaleProvider>
     )
